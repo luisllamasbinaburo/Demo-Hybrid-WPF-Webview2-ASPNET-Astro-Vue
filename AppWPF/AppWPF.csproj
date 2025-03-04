@@ -27,19 +27,4 @@
     <ProjectReference Include="..\ServerAspnet\ServerAspnet.csproj" />
   </ItemGroup>
 
- <Target Name="BuildReactApp" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Release'">
-    <Message Importance="high" Text="Construyendo Astro App..." />
-    <Exec Command="npm install" WorkingDirectory="../AstroClient" />
-    <Exec Command="npm run build" WorkingDirectory="../AstroClient" />
-    <ItemGroup>
-      <AstroBuildFiles Include="../AstroClient/dist/**" />
-    </ItemGroup>
-    <Copy SourceFiles="@(AstroBuildFiles)" DestinationFiles="@(AstroBuildFiles->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
-
-    <ItemGroup>
-     <Content Include="wwwroot\**">
-       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-     </Content>
-   </ItemGroup>
-  </Target>
 </Project>

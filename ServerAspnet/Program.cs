@@ -26,19 +26,21 @@ namespace ServerAspnet
 
             builder.Services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(Program).Assembly));
 
+#if DEBUG
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+#endif
 
             var app = builder.Build();
 
 #if DEBUG
             if (app.Environment.IsDevelopment())
             {
-                builder.Services.AddEndpointsApiExplorer();
-                builder.Services.AddSwaggerGen();
+         
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 #endif
-
 
             app.UseCors("AllowAll");
 
