@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\demo\index.html" />
+    <Content Remove="wwwroot\favicon.svg" />
+    <Content Remove="wwwroot\index.html" />
+    <Content Remove="wwwroot\vue\index.html" />
+    <Content Remove="wwwroot\_astro\astro.Dm8K3lV8.svg" />
+    <Content Remove="wwwroot\_astro\background.BPKAcmfN.svg" />
+    <Content Remove="wwwroot\_astro\client.Dejt-zUq.js" />
+    <Content Remove="wwwroot\_astro\QueryParams.C5J9ZMhL.js" />
+    <Content Remove="wwwroot\_astro\QueryParams.DdX49F7h.js" />
+    <Content Remove="wwwroot\_astro\runtime-core.esm-bundler.CAMBo3cX.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\demo\index.html" />
+    <None Include="wwwroot\favicon.svg" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\vue\index.html" />
+    <None Include="wwwroot\_astro\astro.Dm8K3lV8.svg" />
+    <None Include="wwwroot\_astro\background.BPKAcmfN.svg" />
+    <None Include="wwwroot\_astro\client.Dejt-zUq.js" />
+    <None Include="wwwroot\_astro\QueryParams.C5J9ZMhL.js" />
+    <None Include="wwwroot\_astro\QueryParams.DdX49F7h.js" />
+    <None Include="wwwroot\_astro\runtime-core.esm-bundler.CAMBo3cX.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+</Project>

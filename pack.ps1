@@ -1,0 +1,1 @@
+dotnet publish AppWPF -c Release -o AppWPF/publish -r win-x64 --self-contained true

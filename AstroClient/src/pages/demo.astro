@@ -1,0 +1,11 @@
+
+<div>
+    <h1>My Astro Demo</h1>
+    <p>This is a demo of Astro</p>
+</div>
+
+<script>
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+console.log('params', params);
+</script>
