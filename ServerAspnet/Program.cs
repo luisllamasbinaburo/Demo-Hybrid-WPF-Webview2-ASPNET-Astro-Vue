@@ -15,16 +15,18 @@ namespace ServerAspnet
                     policy =>
                     {
                         policy
-                        .WithOrigins("http://localhost:4321") // La URL de tu frontend en Astro
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials(); // Permitir el envío de credenciales (cookies, headers de autenticación)
+                            .WithOrigins("http://localhost:4321") // La URL de tu frontend en Astro
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials(); // Permitir el envío de credenciales (cookies, headers de autenticación)
                     }
                 );
             });
 
             builder.Services.AddSignalR();
-            builder.Services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(Program).Assembly));
+            builder
+                .Services.AddControllers()
+                .PartManager.ApplicationParts.Add(new AssemblyPart(typeof(Program).Assembly));
 
 #if DEBUG
             builder.Services.AddEndpointsApiExplorer();
@@ -49,13 +51,15 @@ namespace ServerAspnet
             app.MapControllers();
 
             app.UseDefaultFiles(); // <-- Sirve index.html por defecto
-            app.UseStaticFiles();  // <-- Sirve archivos de wwwroot
+            app.UseStaticFiles(); // <-- Sirve archivos de wwwroot
 
             app.MapGet("/api/demo", () => new { message = "¡Funciona! 🎉" });
             app.MapHub<ClockHub>("/clockHub");
 
-            if (args.Any(x => x == "run_async")) app.RunAsync();
-            else app.Run();
+            if (args.Any(x => x == "run_async"))
+                app.RunAsync();
+            else
+                app.Run();
         }
     }
 }

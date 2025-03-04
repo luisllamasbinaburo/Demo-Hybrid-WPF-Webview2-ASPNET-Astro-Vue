@@ -29,5 +29,6 @@ onMounted(async () => {
     <h2>Datos desde API</h2>
     <pre v-if="data">{{ data }}</pre>
     <p v-else>Cargando datos...</p>
+    <a href="/">Back</a>
   </div>
 </template>

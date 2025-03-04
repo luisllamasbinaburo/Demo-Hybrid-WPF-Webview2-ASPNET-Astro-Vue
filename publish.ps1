@@ -1,8 +1,14 @@
 # Publicar
-$folderPath = ".\ServerAspnet\wwwroot"
+$wwwrootPath = ".\ServerAspnet\wwwroot"
 
-if (Test-Path $folderPath) {
-    Remove-Item -Path $folderPath -Recurse -Force
+if (Test-Path $wwwrootPath) {
+    Remove-Item -Path $wwwrootPath -Recurse -Force
+}
+
+$publishPath = ".\publish"
+
+if (Test-Path $publishPath) {
+    Remove-Item -Path $publishPath -Recurse -Force
 }
 
 dotnet publish AppWPF -c Release -o publish

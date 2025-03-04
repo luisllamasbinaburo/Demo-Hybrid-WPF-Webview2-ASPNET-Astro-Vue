@@ -2,6 +2,7 @@
   <div id="app">
     <h1>Hora Actual</h1>
     <p>{{ time }}</p>
+    <a href="/">Back</a>
   </div>
 </template>
 
