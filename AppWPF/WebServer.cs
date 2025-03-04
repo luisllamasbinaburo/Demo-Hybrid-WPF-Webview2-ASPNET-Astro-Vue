@@ -1,26 +1,24 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Windows;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using System.Windows;
 
 namespace AppWPF
 {
     public class WebServer
     {
-        private WebApplication? _app;
-
         public void Start()
         {
             try
             {
+                Console.WriteLine("Iniciando servidor web...");
                 ServerAspnet.Program.Main(new string[] { "run_async" });
+                Console.WriteLine("Iniciado...");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error en el servidor: {ex.Message}");
             }
         }
-        
-        public void Stop() => _app?.StopAsync();
     }
 }

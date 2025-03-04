@@ -18,6 +18,7 @@ public partial class MainWindow : Window
 
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
+        Console.WriteLine("Iniciando servidor web...");
         _server.Start();
         await webView.EnsureCoreWebView2Async();
 
