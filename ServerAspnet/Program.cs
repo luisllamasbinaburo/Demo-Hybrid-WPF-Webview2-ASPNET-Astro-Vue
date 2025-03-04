@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
+﻿using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace ServerAspnet
 {
@@ -16,14 +15,15 @@ namespace ServerAspnet
                     policy =>
                     {
                         policy
-#if DEBUG
-                        .WithOrigins("http://localhost:4321")
-#endif
-                        .AllowAnyMethod().AllowAnyHeader();
+                        .WithOrigins("http://localhost:4321") // La URL de tu frontend en Astro
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials(); // Permitir el envío de credenciales (cookies, headers de autenticación)
                     }
                 );
             });
 
+            builder.Services.AddSignalR();
             builder.Services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(Program).Assembly));
 
 #if DEBUG
@@ -36,7 +36,6 @@ namespace ServerAspnet
 #if DEBUG
             if (app.Environment.IsDevelopment())
             {
-         
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
@@ -51,12 +50,12 @@ namespace ServerAspnet
 
             app.UseDefaultFiles(); // <-- Sirve index.html por defecto
             app.UseStaticFiles();  // <-- Sirve archivos de wwwroot
-  
+
             app.MapGet("/api/demo", () => new { message = "¡Funciona! 🎉" });
+            app.MapHub<ClockHub>("/clockHub");
 
-            if(args.Any(x=> x=="run_async")) app.RunAsync();
+            if (args.Any(x => x == "run_async")) app.RunAsync();
             else app.Run();
-
         }
     }
 }
