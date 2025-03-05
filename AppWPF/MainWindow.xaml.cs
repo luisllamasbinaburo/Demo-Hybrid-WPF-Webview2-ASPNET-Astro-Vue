@@ -13,7 +13,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Loaded += MainWindow_Loaded;
-        Closed += (sender, e) => _server.Stop();
     }
 
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
