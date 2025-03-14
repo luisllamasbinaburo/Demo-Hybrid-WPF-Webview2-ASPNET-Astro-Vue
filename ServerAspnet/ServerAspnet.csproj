@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -11,24 +11,19 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
 
 	<Target Name="BuildReactApp" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Release'">
+		<RemoveDir Directories="wwwroot" Condition="Exists('wwwroot')" />
+		
 		<Message Importance="high" Text="Construyendo Astro App..." />
 		<Exec Command="npm install" WorkingDirectory="../AstroClient" />
 		<Exec Command="npm run build" WorkingDirectory="../AstroClient" />
+
 		<ItemGroup>
 			<AstroBuildFiles Include="../AstroClient/dist/**" />
 		</ItemGroup>
-		<Copy SourceFiles="@(AstroBuildFiles)" DestinationFiles="@(AstroBuildFiles->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
 
-		<ItemGroup>
-			<Content Include="wwwroot\**">
-				<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			</Content>
-		</ItemGroup>
+		<MakeDir Directories="wwwroot" />		
+		<Copy SourceFiles="@(AstroBuildFiles)" DestinationFiles="@(AstroBuildFiles->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />			
 	</Target>
 </Project>
